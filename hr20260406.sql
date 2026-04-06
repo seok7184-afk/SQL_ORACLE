@@ -23,17 +23,24 @@ FROM     EMPLOYEES
 WHERE    SALARY >= 5000
 ORDER BY SALARY DESC; --58
 
--- 전화번호에 100이 포함된 직원
-SELECT   *
+-- 전화번호에 010이 포함된 직원 오름차순
+SELECT   EMPLOYEE_ID, FIRST_NAME, LAST_NAME, PHONE_NUMBER
 FROM     EMPLOYEES
-WHERE    phone_number LIKE '%100%';
+WHERE    phone_number LIKE '%010%'
+ORDER BY EMPLOYEE_ID ASC;
 
 -- 50번 부서의 직원을 출력
-SELECT   *
+SELECT   EMPLOYEE_ID                     "사 번", -- 사번 : ALIAS(별명)
+         FIRST_NAME || ' ' || LAST_NAME   이름,
+         department_id                    부서번호
 FROM     EMPLOYEES
-WHERE    department_id = 50;
+WHERE    department_id = 50
+ORDER BY FIRST_NAME ASC, LAST_NAME ASC;
 
 -- 부서가 없는 직원을 출력
-SELECT   *
+SELECT   EMPLOYEE_ID,
+         FIRST_NAME || ' ' || LAST_NAME   ENAME,
+         department_id 
 FROM     EMPLOYEES
-WHERE    department_id is null;
+WHERE    department_id is null
+ORDER BY EMPLOYEE_ID ASC; -- IS NULL, IS NOT NULL
